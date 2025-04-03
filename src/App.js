@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className="container py-5">
-      <h1 className="mb-4 text-center">Pokedex con PokeAPI</h1>
+      <h1 className="mb-4 text-center">Pokedex con PokeAPI:</h1>
 
       <form
         onSubmit={(e) => {
