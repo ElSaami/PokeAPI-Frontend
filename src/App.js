@@ -29,7 +29,7 @@ function App() {
 
   const fetchPokemonByName = async (name) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/pokemon-info/${name}`);
+      const res = await axios.get(`${baseURL}/api/pokemon-info/${name}`);
       setData(res.data);
       await fetchEvolution(name);
     } catch (err) {
@@ -47,7 +47,7 @@ function App() {
 
   const fetchEvolution = async (name) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/evolution/${name}`);
+      const res = await axios.get(`${baseURL}/api/pokemon-info/${name}`);
       setEvolution(res.data);
     } catch (err) {
       console.error('Error al obtener evolución');
