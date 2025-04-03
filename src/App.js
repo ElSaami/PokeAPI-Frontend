@@ -48,7 +48,7 @@ function App() {
 
   const fetchEvolution = async (name) => {
     try {
-      const res = await axios.get(`${baseURL}/api/pokemon-info/${name}`);
+      const res = await axios.get(`${baseURL}/api/evolution/${name}`);
       setEvolution(res.data);
     } catch (err) {
       console.error('Error al obtener evolución');
