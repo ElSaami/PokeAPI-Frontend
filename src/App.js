@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -34,7 +35,11 @@ function App() {
       setData(res.data);
       await fetchEvolution(name);
     } catch (err) {
-      alert('Pokémon no encontrado');
+      Swal.fire({
+        icon: 'error',
+        title: 'Pokémon no encontrado',
+        text: 'Asegúrate de escribir correctamente el nombre.',
+      });
       setData(null);
       setEvolution([]);
     }
@@ -63,20 +68,26 @@ function App() {
 
   return (
     <div className="container py-5">
-      <h1 className="mb-4 text-center">Buscar Pokémon</h1>
+      <h1 className="mb-4 text-center">Pokedex con PokeAPI</h1>
 
-      <div className="d-flex justify-content-center mb-4">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          fetchPokemon();
+        }}
+        className="d-flex justify-content-center mb-4"
+      >
         <input
           type="text"
           value={pokemon}
           onChange={(e) => setPokemon(e.target.value)}
-          placeholder="Ej: charizard"
+          placeholder="Escribe el nombre del pokémon"
           className="form-control w-25 me-2"
         />
-        <button onClick={fetchPokemon} className="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Buscar
         </button>
-      </div>
+      </form>
 
       {data && (
         <div className="card text-center mb-5 p-4 shadow">
@@ -137,6 +148,16 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Footer */}
+      <footer className="text-center mt-5 text-muted">
+        Datos obtenidos desde:{' '}
+        <a href="https://pokeapi.co" target="_blank" rel="noopener noreferrer"> https://pokeapi.co</a> 🥸<br/>
+        Frontend:{' '}
+        <a href="https://github.com/ElSaami/PokeAPI-Frontend" target="_blank" rel="noopener noreferrer"> Repo GitHub</a> 👨‍💻
+        Backend:{' '}
+        <a href="https://github.com/ElSaami/PokeAPI-Backend" target="_blank" rel="noopener noreferrer"> Repo GitHub</a> 👨‍💻
+      </footer>
     </div>
   );
 }
