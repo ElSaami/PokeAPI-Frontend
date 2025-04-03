@@ -24,6 +24,7 @@ function App() {
   const [pokemon, setPokemon] = useState('');
   const [data, setData] = useState(null);
   const [evolution, setEvolution] = useState([]);
+  const baseURL = "https://pokeapi-backend-jdom.onrender.com";
 
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
